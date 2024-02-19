@@ -3,7 +3,6 @@ defmodule TrialInsightify.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :user_id, :id
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :estate_id, :string
