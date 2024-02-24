@@ -4,6 +4,16 @@ defmodule TrialInsightifyWeb.UserRegistrationLive do
   alias TrialInsightify.Accounts
   alias TrialInsightify.Accounts.User
 
+  def select(assigns) do
+    ~H"""
+    <select name={@field} required>
+      <%= for {label, value} <- @options do %>
+        <option value={value}><%= label %></option>
+      <% end %>
+    </select>
+    """
+  end
+
   def render(assigns) do
     ~H"""
     <div class="mx-auto max-w-sm">
@@ -33,6 +43,9 @@ defmodule TrialInsightifyWeb.UserRegistrationLive do
 
         <.input field={@form[:email]} type="email" label="Email" required />
         <.input field={@form[:password]} type="password" label="Password" required />
+        <.input field={@form[:estate_id]} type="text" label="Estate" required />
+
+        <%# <.select field={@form[:estate_id]} label="Estate" options={for estate <- @estates, do: {estate.name, estate.id}} required /> %>
 
         <:actions>
           <.button phx-disable-with="Creating account..." class="w-full">Create an account</.button>
@@ -44,9 +57,11 @@ defmodule TrialInsightifyWeb.UserRegistrationLive do
 
   def mount(_params, _session, socket) do
     changeset = Accounts.change_user_registration(%User{})
+    estates = Accounts.list_estates()
 
     socket =
       socket
+      |> assign(:estates, estates)
       |> assign(trigger_submit: false, check_errors: false)
       |> assign_form(changeset)
 

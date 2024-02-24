@@ -6,9 +6,13 @@ defmodule TrialInsightify.Accounts do
   import Ecto.Query, warn: false
   alias TrialInsightify.Repo
 
-  alias TrialInsightify.Accounts.{User, UserToken, UserNotifier}
+  alias TrialInsightify.Accounts.{User, UserToken, UserNotifier, Estates}
 
   ## Database getters
+
+  def list_estates do
+    Repo.all(Estates)
+  end
 
   @doc """
   Gets a user by email.
