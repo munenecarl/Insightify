@@ -3,7 +3,6 @@ defmodule TrialInsightify.Accounts.Estates do
   import Ecto.Changeset
 
   schema "estates" do
-    field :estate_id, :id
     field :estate_name, :string
 
     timestamps(type: :utc_datetime)

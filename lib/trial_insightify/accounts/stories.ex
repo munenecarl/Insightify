@@ -3,7 +3,6 @@ defmodule TrialInsightify.Accounts.Stories do
   import Ecto.Changeset
 
   schema "stories" do
-    field :story_id, :id
     field :story_title, :string
     field :story_photo, :binary
     field :story_block, :string

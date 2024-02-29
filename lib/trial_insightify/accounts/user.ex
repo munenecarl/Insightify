@@ -5,7 +5,7 @@ defmodule TrialInsightify.Accounts.User do
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
-    field :estate_id, :string
+    belongs_to :estate, TrialInsightify.Accounts.Estates
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
     has_many :stories, TrialInsightify.Accounts.Stories, foreign_key: :user_id
