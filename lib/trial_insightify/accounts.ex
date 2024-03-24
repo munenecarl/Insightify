@@ -11,7 +11,11 @@ defmodule TrialInsightify.Accounts do
   ## Database getters
 
   def list_estates do
-    Repo.all(Estates)
+    Estates.list_estates()
+  end
+
+  def get_estate_by_name(estate_name) do
+    Estates.get_estate_by_name(estate_name)
   end
 
   @doc """
