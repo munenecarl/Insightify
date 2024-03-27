@@ -5,6 +5,8 @@ defmodule TrialInsightify.Application do
 
   use Application
 
+  Dotenv.load!()
+
   @impl true
   def start(_type, _args) do
     children = [
