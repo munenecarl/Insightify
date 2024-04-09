@@ -39,8 +39,11 @@ defmodule TrialInsightify.Accounts.User do
   def registration_changeset(user, attrs, opts \\ []) do
     user
     |> cast(attrs, [:email, :password, :estate_id])
+    |> cast(:estate_id, Map.get(attrs, "estate_id") |> String.to_integer())
+    |> validate_required([:estate_id])
     |> validate_email(opts)
     |> validate_password(opts)
+    |> assoc_constraint(:estate)
   end
 
   defp validate_email(changeset, opts) do

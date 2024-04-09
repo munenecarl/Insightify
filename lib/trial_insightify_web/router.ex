@@ -71,6 +71,12 @@ defmodule TrialInsightifyWeb.Router do
     end
   end
 
+  scope "/api", TrialInsightifyWeb do
+    pipe_through :api
+
+    resources "/users", UserController, except: [:new, :edit]
+  end
+
   scope "/", TrialInsightifyWeb do
     pipe_through [:browser]
 
